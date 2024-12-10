@@ -1,44 +1,281 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/brands.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/solid.css" rel="stylesheet" />
-    <link href="https://bootswatch.com/5/spacelab/bootstrap.css" rel="stylesheet" id="themedStyle">
 
-    <link rel="stylesheet" href="https://aaronrs2002.github.io/black-jack/css/animate.min.css" />
-    <link href="https://aaronrs2002.github.io/black-jack/css/shared.css" rel="stylesheet"/>
-      <link href="css/style.css" rel="stylesheet"/>
-    
-    <title>Invoice Builder</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-   <div class="container">
-     <div class="row">
-         <div class="col-md-12"></div>
-     </div>
-   </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/brands.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/solid.css" rel="stylesheet" />
+  <link href="https://bootswatch.com/5/spacelab/bootstrap.css" rel="stylesheet" id="themedStyle">
 
-        <div class="hide alert fadeInUp" role="alert" id="globalAlert"></div>
-    <footer class="footer mt-auto py-3 animated fadeInUp">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="btn-group block my-2" role="group" id="gameLinks"></div>
-                </div>
-                <div class="col-md-2 my-2"> <select class="form-control" onChange="changeTheme()" id="themes"></select>
-                </div>
-                <div class="col-md-4" id="socialList">
-                </div>
-                <div class="col-md-2 my-3" id="year"></div>
-            </div>
+  <link rel="stylesheet" href="https://aaronrs2002.github.io/black-jack/css/animate.min.css" />
+  <link href="https://aaronrs2002.github.io/black-jack/css/shared.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+
+  <title>Invoice Builder</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous" />
+  <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="row noPrint">
+      <div class="col-md-12">
+        <select class="form-control" onChange="formSelection()" name="whichOrder">
+          <option value="default">New work order</option>
+
+          <!--{allOrders.length > 0 ? allOrders.map((id, i) => {
+        return (<option  value={id.timestampEmail}>{id.timestampEmail}</option>)
+        })
+        : null}-->
+        </select>
+      </div>
+      <div class="col-md-12">
+        <h3>Work Order</h3>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="text" name="fname" class="form-control" placeholder="First Name" />
+          <input type="text" name="lname" class="form-control" placeholder="Last Name" />
+          <input type="text" name="email" class="form-control" placeholder="Email" />
+          <input type="text" name="phone" class="form-control" placeholder="Phone" />
         </div>
-    </footer>
-  
-  </body>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group"><input type="text" name="domain" class="form-control" placeholder="Domain Name" />
+          <input type="text" name="price" class="form-control" placeholder="Price" />
+          <input type="text" name="supportRate" class="form-control" placeholder="Monthly Support Rate" />
+          <input type="text" name="developementRate" class="form-control" placeholder="Development Rate" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-1 noPrint">
+      <div class="col-md-6 mb-5">
+
+        <div class="form-group">
+          <h5>Public/Client Side Website</h5>
+          <ul class="decimal">
+
+            <li><label>Client side monitoring and support <input type="checkbox" name="clientSupport" /></label></li>
+            <li><label>Monthly hosting <input type="checkbox" name="hosting" /></label></li>
+            <li><label>SSL Certificate <input type="checkbox" name="securityCert" /></label></li>
+
+            <li>
+              <label>Number of pages:</label>
+              <select class="form-control" numbers-total="25" name="howManyPgs">
+                <!--{numbers.length > 0 ? numbers.map((num, i) => {
+              return (<option value={num} >{num}</option>)
+              }) : null}-->
+              </select>
+            </li>
+
+            <li><label>Contact form <input type="checkbox" name="contactForm" /></label></li>
+            <li><label>Weather API <input type="checkbox" name="weatherAPI" /></label></li>
+            <li><label>Banners <input type="checkbox" name="banners" /></label></li>
+            <li><label>Google Analytics <input type="checkbox" name="analytics" /></label></li>
+
+            <li><label>Content modules (text,video,map,calendar,image) <input type="checkbox" name="content" /></label>
+            </li>
+            <li><input type="text" name="blog" class="form-control" placeholder="Blog Address" /></li>
+            <li>
+              <label>Number of event modules:</label>
+              <select class="form-control" name="events" numbers-total="25" onChange="buildFields('events')">
+                <!--{numbers.length > 0 ? numbers.map((num, i) => {
+              return (<option value={num} >{num}</option>)
+              }) : null}-->
+              </select>
+              <div>
+                <!--{eventArr.length > 0 ? eventArr.map((num, i) => {
+              if (num.length !== 0) {
+              return (<input  class="form-control" name={"events-" + i} placeholder={num} />)
+              }
+              }) : null}-->
+              </div>
+            </li>
+            <li>
+              <label>Number of image carousel modules:</label>
+              <select class="form-control" name="images" numbers-total="25" onChange="buildFields('images')">
+                <!-- {numbers.length > 0 ? numbers.map((num, i) => {
+              return (<option value={num} >{num}</option>)
+              }) : null}-->
+              </select>
+              <div>
+                <!--{imagesArr.length > 0 ? imagesArr.map((num, i) => {
+              return (<input  class="form-control" name={"images-" + i} placeholder={num} />)
+              }) : null}-->
+              </div>
+            </li>
+            <li>
+              <label>Number of video carousel modules:</label>
+              <select class="form-control" name="videos" numbers-total="25" onChange="buildFields('videos')">
+                <!--{numbers.length > 0 ? numbers.map((num, i) => {
+              return (<option value={num} >{num}</option>)
+              }) : null}-->
+              </select>
+              <div>
+                <!--  {videosArr.length > 0 ? videosArr.map((num, i) => {
+              return (<input  class="form-control" name={"videos-" + i} placeholder={num} />)
+              }) : null}-->
+              </div>
+            </li>
+            <li>
+              <label>Number of unique forms:</label>
+              <select class="form-control" name="forms" numbers-total="25" onChange="buildFields('forms')">
+                <!--{numbers.length > 0 ? numbers.map((num, i) => {
+              return (<option value={num} >{num}</option>)
+              }) : null}-->
+              </select>
+              <div>
+                <!-- {formsArr.length > 0 ? formsArr.map((num, i) => {
+              return (<input  class="form-control" name={"forms-" + i} placeholder={num} />)
+              }) : null}-->
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <h5>Admin and Server Side</h5>
+          <ul class="decimal">
+            <li><label>Server side and Admin monitoring and support <input type="checkbox" name="dbSupport" /></label>
+            </li>
+            <li><label>Secure multi-user Login <input type="checkbox" name="jwtLogin" /></label></li>
+            <li><label>Database bi-weekly back up <input type="checkbox" name="dbBackup" /></label></li>
+            <li><label>Merchant Account API <input type="checkbox" name="merchantAccount" /></label></li>
+            <li>
+              <label>Database type:</label>
+              <select class="form-control" name="databaseType">
+                <option value="MySQL">MySQL</option>
+                <option value="MongoDB">MongoDB</option>
+                <option value="GoogleFirebase">Google Firebase</option>
+                <option value="noDB">No Database</option>
+              </select>
+            </li>
+            <li>
+              <label>Number of encrypted values:</label>
+              <select class="form-control" name="encrypted" numbers-total="25" onChange="buildFields('encrypted')">
+                <!--{numbers.length > 0 ? numbers.map((num, i) => {
+              return (<option value={num} >{num}</option>)
+              }) : null}-->
+              </select>
+              <div>
+                <!--{encryptedArr.length > 0 ? encryptedArr.map((num, i) => {
+              return (<input  class="form-control" name={"encrypted-" + i} placeholder={num} />)
+              }) : null}-->
+              </div>
+            </li>
+            <li>
+              <label>Number of CRUD (Create, Read, Update, Delete) API's:</label>
+              <select class="form-control" name="crud" numbers-total="25" onChange="buildFields('crud')">
+                <!-- {numbers.length > 0 ? numbers.map((num, i) => {
+              return (<option value={num} >{num}</option>)
+              }) : null}-->
+              </select>
+              <div>
+                <!-- {crudArr.length > 0 ? crudArr.map((num, i) => {
+              return (<input  class="form-control" name={"crud-" + i} placeholder={num} />)
+              }) : null}-->
+              </div>
+            </li>
+            <li><label>Details</label><textarea name="details" rows="5" class="form-control"
+                placeholder="Details"></textarea>
+            </li>
+          </ul>
+
+
+        </div>
+
+      </div><!--{activeOrder === "default" ? <button class="btn btn-block btn-success" onClick="exportToHTML('default')">Post</button> :
+    <button class="btn btn-block btn-success" onClick="exportToHTML('update')">Update</button>}-->
+      <button class="btn btn-block btn-success" onClick="exportToHTML('default')" data-func="post">Post</button>
+      <button class="btn btn-block btn-success hide" onClick="exportToHTML('update')" data-func="update">Update</button>
+
+
+    </div>
+    <div class="row mb-5">
+      <div class="col-md-12 mb-1" id="HTML_Target"></div>
+      <div class="col-md-12 mb-5 printOnly">
+
+        <h5>STATEMENT OF WORK</h5>
+        <p>We've prepared the price quote (refer to page 1) based on everything that we have discussed, including any
+          correspondence via email, in-person, or phone calls. The breakdown is outlined in the Statement of Work
+          document
+          which includes the scope of work, project objectives, tasks, deliverables, certain terms, conditions and
+          requirements as well as payment of the project. We are only responsible for the items outlined in the
+          Statement
+          of Work. Items not included in the Statement of Work are not part of the project nor have they been included
+          in
+          the quoted cost.</p>
+        <h5>ADDITIONS</h5>
+        <p>Please review the Statement of Work and if you have any additional feature requests, changes in tasks,
+          changes
+          in deliverables or any scope modifications, beyond what was agreed and signed off on in the original Statement
+          of Work, additional billable time will be incurred to you as the client at our hourly rate of $75.</p>
+        <h5>REVISIONS</h5>
+        <p>The price estimate includes time for revisions, and that will not exceed 10% of the total budget of web
+          development time mentioned on page 2. Should you request additional revisions beyond what is included, or that
+          exceed the allocated time, you will receive an email notification from us requesting a confirmation that you
+          wish to proceed with said revisions and agree that you will be billed at our hourly rate of $120. After we
+          have
+          received your confirmation we will proceed.</p>
+
+        <h5>LIABILITY</h5>
+        <p>Web-Presence LLC will do everything possible to build you an amazing website, but we accept no liability
+          for your sales, revenue, and/or the success of your website/business directly, indirectly, or consequentially.
+          This contract is a legally binding document, and cannot be renewed. If for some reason one part of this
+          contract
+          becomes invalid or unenforceable, the remaining parts of it remain in place.</p>
+        <ul class="list-unstyled">
+          <li>
+            <h5>SIGNATURE ______________________________________ </h5>
+          </li>
+          <li>
+            <h5>COMPANY________________________________________ </h5>
+          </li>
+          <li>
+            <h5>DATE _____________________________________________</h5>
+          </li>
+        </ul>
+
+      </div>
+      <!--  {htmlOutput.length > 0 ?
+    <div class="col-md-12 noPrint">
+      <button class="btn btn-block btn-info" onClick="indow.print()">View, Save or Print Legal Agreement <i
+          class="fas fa-file-pdf"></i> </button>
+    </div>
+    : null}-->
+    </div>
+
+
+  </div>
+
+  <div class="hide alert fadeInUp" role="alert" id="globalAlert"></div>
+  <footer class="footer mt-auto py-3 animated fadeInUp">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="btn-group block my-2" role="group" id="gameLinks"></div>
+        </div>
+        <div class="col-md-2 my-2"> <select class="form-control" onChange="changeTheme()" id="themes"></select>
+        </div>
+        <div class="col-md-4" id="socialList">
+        </div>
+        <div class="col-md-2 my-3" id="year"></div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+<script src="js/Validate.js"></script>
+<script src="js/Timestamp.js"></script>
 <script src="https://aaronrs2002.github.io/black-jack/js/footer.js"></script>
 <script src="js/functionality.js"></script>
+
 </html>

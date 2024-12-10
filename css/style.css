@@ -1,0 +1,468 @@
+@import url("https://fonts.googleapis.com/css2?family=BenchNine&family=Oswald&family=Passion+One&display=swap");
+
+body {
+    font-family: "Oswald", sans-serif;
+}
+
+.row {
+    padding: 5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Passion One", cursive;
+}
+
+.listWindow .btn.btn-danger {
+    border: #fff 1px solid;
+}
+
+.row.listWindow.no-gutters div[class^="col-md"] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    min-height: 50px;
+}
+
+/*
+.altColorEven{
+
+border:#333 1px solid;
+}
+.altColorOdd{
+
+  border:#f8f8f8 1px solid;
+}
+
+div[class*="altColor"], div[class*="altColor"] small{
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+div[class*="altColor"] .btn-danger,.apexcharts-legend-series{
+  width:100%;
+  display:block;
+
+}*/
+
+.input-group-btn button {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.form-inline input {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+}
+
+
+
+.error {
+    border: #ff0000 1px solid;
+}
+
+.block {
+    width: 100%;
+
+}
+
+.btn-group.form-control {
+    padding: 0;
+}
+
+ul.decimal {
+    list-style-type: decimal
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.capitalize,
+option {
+    text-transform: capitalize;
+}
+
+img.logo {
+    position: absolute;
+    z-index: 2;
+    height: auto;
+    width: 120px;
+
+    margin-top: 0px;
+}
+
+.imgThumb {
+    width: 150px;
+    height: 100px;
+    display: inline-block;
+    margin-bottom: 5rem;
+
+}
+
+.imgThumb img {
+    width: 150px;
+    max-height: 100px;
+
+
+}
+
+.btn.btn-danger.mx-1 {
+    border: #fff 1px solid;
+}
+
+.loginForm {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    margin-top: 10%;
+    text-align: center;
+}
+
+.hide,
+.hide.form-control,
+input[name=sec].form-control {
+    display: none !important;
+}
+
+#settingsPanel {
+    height: 400px;
+}
+
+ul.noStyle {
+    padding-left: 0px;
+    list-style-type: none;
+}
+
+/*start custom radio button credit: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_radio*/
+
+.radioContainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radioContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+ul.inline li {
+    display: inline-block;
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+ul.inline {
+
+    margin: auto;
+    padding-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.inline {
+    display: inline-block !important;
+}
+
+
+.react-datepicker__input-container input[type=text] {
+    display: block !important;
+    width: 100% !important;
+    height: calc(1.5em + 1.5rem + 2px);
+    padding: .75rem 1rem;
+    font-size: .9375rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #52575c;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+
+/* Create a custom radio button */
+.radioCheckmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radioContainer:hover input~.radioCheckmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radioContainer input:checked~.radioCheckmark {
+    background-color: rgb(71, 5, 255);
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radioCheckmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radioContainer input:checked~.radioCheckmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radioContainer .radioCheckmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+
+/*end  custom radio*/
+
+footer {
+    box-shadow: 0 -4px 3px rgba(0, 0, 0, 0.075);
+
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+}
+
+div.animated[role="alert"] {
+    margin-top: 10%;
+    position: fixed;
+    z-index: 150;
+    width: 100%;
+}
+
+.content-fluid {
+    width: 100%;
+
+    height: auto;
+
+}
+
+main {
+    margin-top: 2rem;
+}
+
+.txtCenter {
+    text-align: center;
+}
+
+div.section {
+    margin-top: 4rem;
+
+}
+
+.light {
+    color: #fff;
+}
+
+.dark {
+    color: #000;
+}
+
+.quill {
+    background-color: #fff;
+    color: #000;
+}
+
+.ql-container {
+    min-height: 150px;
+}
+
+.section iframe,
+iframe.content-fluid {
+    width: 100% !important;
+    min-height: 350px !important;
+    height: auto !important;
+    border: none;
+
+}
+
+
+h2+hr {
+
+    overflow: visible;
+    padding: 0;
+    border: none;
+    border-top: double #666666;
+    color: #666666;
+    text-align: center;
+}
+
+h2+hr:after {
+    content: "♦";
+    display: inline-block;
+    position: relative;
+    top: -0.85em;
+    font-size: 2em;
+    padding: 0 0.25rem;
+    border-radius: 50%;
+}
+
+/*h2+hr:after {
+  background-color: #fff;
+}*/
+
+#messageAlert {
+    position: fixed;
+    top: 0px;
+    z-index: 25;
+
+}
+
+/*start loader animation*/
+.loader {
+    margin: auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #333;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*end loader*/
+.list-group-item-danger {
+    color: #85001e;
+    background-color: #ffb8c8;
+}
+
+.list-group-item[data-color^=ROOM-] {
+    color: #155724;
+    background-color: #c3e6cb;
+}
+
+.list-group-item.list-group-item-action.list-group-item-primary[data-color^=ROOM-] {
+    color: #004085;
+    background-color: #cce5ff;
+}
+
+.list-group-item[data-color^=ROOM-][data-fname=VACANT] {
+    color: #818182;
+    background-color: #fdfdfe;
+}
+
+div.apexcharts-legend-series {
+    display: block;
+    width: 100%;
+}
+
+
+#clockInOutWindow {
+    min-height: 50px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+#chart {
+
+    margin-left: -50px !important;
+}
+
+
+.mobileOnly {
+    display: none;
+}
+
+.desktopOnly {
+    display: block;
+}
+
+.printOnly {
+    display: none;
+}
+
+
+
+
+@media (max-width: 767px) {
+    div.animated[role="alert"] {
+        margin-top: 20%;
+    }
+
+    main {
+        margin-bottom: 5rem;
+    }
+
+
+}
+
+/*end 767*/
+
+
+/*PRINT MEDIA*/
+
+
+
+@media print {
+
+    footer,
+    nav,
+    .noPrint {
+        display: none;
+    }
+
+    body,
+    li {
+        background-color: #fff !important;
+        color: #000 !important;
+    }
+
+    .printOnly {
+        display: block;
+    }
+
+    #rentalAgreement {
+        width: 95%;
+        margin-left: 5px;
+    }
+}
+
+
+
+/*END PRINT MEDIA*/
