@@ -63,6 +63,9 @@ for (let i = 0; i < 25; i++) {
 
 });
 
+if (localStorage.getItem("companyName")) {
+    document.querySelector("input[name='companyName']").value = localStorage.getItem("companyName");
+}
 
 if (localStorage.getItem("invoices")) {
     let tempList = [];
@@ -119,6 +122,7 @@ const exportToHTML = (method) => {
 
     }
     document.getElementById("legalText").classList.remove("hide");
+    localStorage.setItem("companyName", document.querySelector("[name='companyName']").value);
     setTimeout(() => {
         [].forEach.call(document.querySelectorAll(".companyName"), (e) => {
             e.innerHTML = document.querySelector("[name='companyName']").value;
