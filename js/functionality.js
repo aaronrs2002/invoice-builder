@@ -23,6 +23,8 @@ import Validate from "./Validate";*/
  let [allOrders, setAllOrders] = useState([]);
  let [timeStampEmail, setTimeStampEmail] = useState();
  let [activeOrder, setActiveOrder] = useState("default");*/
+let invoices = []
+
 let eventsNum = [];
 let eventArr = [];
 let imagesNum = [];
@@ -58,10 +60,27 @@ for (let i = 0; i < 25; i++) {
 
     e.innerHTML = selectHTML;
 
-})
+});
+
+
+if (localStorage.getItem("invoices")) {
+    let tempList = [];
+    invoices = JSON.parse(localStorage.getItem("invoices"));
+
+
+    let invoiceOptionsHTML = document.querySelector("[name='whichOrder']").innerHTML;
+    for (let i = 0; i < invoices.length; i++) {
+        if (tempList.indexOf(invoices[i].domain) === -1 && invoices[i].domain) {
+            invoiceOptionsHTML = invoiceOptionsHTML + "<option value='" + i + "'>" + invoices[i].domain + "</option>";
+            tempList.push(invoices[i].domain);
+        }
+
+    }
+    document.querySelector("[name='whichOrder']").innerHTML = invoiceOptionsHTML;
+}
 
 //CLIENT SIDE GET ALL WITHIN A DECADE
-const loadIds = () => {
+/*const loadIds = () => {
     axios.get("/api/workOrder/allOrderIds/202", props.config).then(
         (res) => {
             if (res.data.affectedRows === 0) {
@@ -79,12 +98,22 @@ const loadIds = () => {
             );
         }
     );
-}
+}*/
 
 
 const exportToHTML = (method) => {
 
+
+    document.getElementById("legalText").classList.remove("hide");
+
     Validate(["fname", "lname", "email", "phone", "domain", "price", "supportRate", "developementRate"]);
+
+    if (document.querySelector(".error")) {
+        globalAlert("alert-warning", "There is an isssue with your form");
+        //globalAlert(alertLevel, message) 
+        return false;
+
+    }
 
     let fname = document.querySelector("[name='fname']").value;
     let lname = document.querySelector("[name='lname']").value;
@@ -280,6 +309,32 @@ const exportToHTML = (method) => {
         price: parseInt(document.querySelector("[name='price']").value).toFixed(2)
     }
 
+    if (!data.domain) {
+        return false;
+    }
+    if (method === "default") {
+        let validCk = true;
+        for (let i = 0; i < invoices.length; i++) {
+            if (invoices[i].domain === data.domain) {
+                invoices[i] = data;
+                validCk = null;
+            }
+        }
+
+
+        if (validCk) {
+            invoices = [...invoices, data];
+        }
+
+        localStorage.setItem("invoices", JSON.stringify(invoices));
+    } else {
+        invoices[activeOrder] = data;
+        localStorage.setItem("invoices", JSON.stringify(invoices));
+    }
+
+
+
+
 
     /* if (method === "default") {
          axios.post("/api/workOrder/post-workOrder/", data, props.config).then(
@@ -321,11 +376,18 @@ const exportToHTML = (method) => {
     htmlOutput = htmlString;
 
     document.getElementById("HTML_Target").innerHTML = htmlOutput;
+    return false;
 }
 
 
 const buildFields = (fieldName) => {
     let howMany = document.querySelector("select[name='" + fieldName + "']").value;
+    let inputHTML = "";
+    for (let i = 0; i < howMany; i++) {
+        inputHTML = inputHTML + "<input type='text' class='form-control' placeholder='" + fieldName + "-" + i + "' name='" + fieldName + "-" + i + "' />"
+    }
+
+    document.querySelector("[data-target='" + fieldName + "']").innerHTML = inputHTML;
     let tempList = [];
     for (let i = 0; i < Number(howMany); i++) {
         tempList.push(i);
@@ -395,82 +457,82 @@ const formSelection = () => {
                  props.showAlert("Message: " + res.data.message, "warning");
              } else {
  
-                 //setTimeStampEmail((timestampEmail) => res.data[0].timestampEmail);
-                 timestampEmail = res.data[0].timestampEmail;
-                 document.querySelector("[name='fname']").value = res.data[0].fname;
-                 document.querySelector("[name='lname']").value = res.data[0].lname;
-                 document.querySelector("[name='email']").value = res.data[0].email;
-                 document.querySelector("[name='phone']").value = res.data[0].phone;
-                 document.querySelector("[name='domain']").value = res.data[0].domain;
-                 document.querySelector("[name='price']").value = res.data[0].price;
-                 document.querySelector("[name='supportRate']").value = res.data[0].supportRate;
-                 document.querySelector("[name='developementRate']").value = res.data[0].developementRate;
+                 //setTimeStampEmail((timestampEmail) => invoices[activeOrder].timestampEmail);
+                 timestampEmail = invoices[activeOrder].timestampEmail;
+                 document.querySelector("[name='fname']").value = invoices[activeOrder].fname;
+                 document.querySelector("[name='lname']").value = invoices[activeOrder].lname;
+                 document.querySelector("[name='email']").value = invoices[activeOrder].email;
+                 document.querySelector("[name='phone']").value = invoices[activeOrder].phone;
+                 document.querySelector("[name='domain']").value = invoices[activeOrder].domain;
+                 document.querySelector("[name='price']").value = invoices[activeOrder].price;
+                 document.querySelector("[name='supportRate']").value = invoices[activeOrder].supportRate;
+                 document.querySelector("[name='developementRate']").value = invoices[activeOrder].developementRate;
  
-                 if (res.data[0].clientSupport.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].clientSupport.indexOf("Yes") !== -1) {
                      document.querySelector("[name='clientSupport']").checked = true;
                  }
  
-                 if (res.data[0].hosting.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].hosting.indexOf("Yes") !== -1) {
                      document.querySelector("[name='hosting']").checked = true;
                  }
  
-                 if (res.data[0].securityCert.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].securityCert.indexOf("Yes") !== -1) {
                      document.querySelector("[name='securityCert']").checked = true;
                  }
  
-                 document.querySelector("[name='howManyPgs']").value = res.data[0].howManyPgs;
+                 document.querySelector("[name='howManyPgs']").value = invoices[activeOrder].howManyPgs;
  
-                 if (res.data[0].contactForm.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].contactForm.indexOf("Yes") !== -1) {
                      document.querySelector("[name='contactForm']").checked = true;
                  }
-                 if (res.data[0].weatherAPI.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].weatherAPI.indexOf("Yes") !== -1) {
                      document.querySelector("[name='weatherAPI']").checked = true;
                  }
-                 if (res.data[0].banners.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].banners.indexOf("Yes") !== -1) {
                      document.querySelector("[name='banners']").checked = true;
                  }
-                 if (res.data[0].analytics.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].analytics.indexOf("Yes") !== -1) {
                      document.querySelector("[name='analytics']").checked = true;
                  }
-                 if (res.data[0].content.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].content.indexOf("Yes") !== -1) {
                      document.querySelector("[name='content']").checked = true;
                  }
-                 document.querySelector("[name='blog']").value = res.data[0].blog;
+                 document.querySelector("[name='blog']").value = invoices[activeOrder].blog;
  
-                 if (res.data[0].jwtLogin.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].jwtLogin.indexOf("Yes") !== -1) {
                      document.querySelector("[name='jwtLogin']").checked = true;
                  }
  
-                 if (res.data[0].dbBackup.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].dbBackup.indexOf("Yes") !== -1) {
                      document.querySelector("[name='dbBackup']").checked = true;
                  }
  
-                 if (res.data[0].dbSupport.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].dbSupport.indexOf("Yes") !== -1) {
                      document.querySelector("[name='dbSupport']").checked = true;
                  }
  
-                 if (res.data[0].merchantAccount.indexOf("Yes") !== -1) {
+                 if (invoices[activeOrder].merchantAccount.indexOf("Yes") !== -1) {
                      document.querySelector("[name='merchantAccount']").checked = true;
                  }
  
-                 document.querySelector("[name='databaseType']").value = res.data[0].databaseType;
-                 document.querySelector("[name='details']").value = res.data[0].details;
+                 document.querySelector("[name='databaseType']").value = invoices[activeOrder].databaseType;
+                 document.querySelector("[name='details']").value = invoices[activeOrder].details;
  
  
-                 //setEventArr((eventArr) => JSON.parse(res.data[0].eventModules));
-                 eventArr = JSON.parse(res.data[0].eventModules);
-                 //setImagesArr((imagesArr) => JSON.parse(res.data[0].imageCarouselModules));
-                 imagesArr = JSON.parse(res.data[0].imageCarouselModules);
-                 //setVideosArr((videosArr) => JSON.parse(res.data[0].videoCarouselModules));
-                 videosArr = JSON.parse(res.data[0].videoCarouselModules);
-                 //setFormsArr((formsArr) => JSON.parse(res.data[0].formsModules));
-                 formsArr = JSON.parse(res.data[0].formsModules);
-                 // setEncryptedArr((encryptedArr) => JSON.parse(res.data[0].encryptedModules));
-                 encryptedArr = JSON.parse(res.data[0].encryptedModules);
-                 // setCrudArr((crudArr) => JSON.parse(res.data[0].crudModules));
-                 crudArr = JSON.parse(res.data[0].crudModules);
+                 //setEventArr((eventArr) => JSON.parse(invoices[activeOrder].eventModules));
+                 eventArr = JSON.parse(invoices[activeOrder].eventModules);
+                 //setImagesArr((imagesArr) => JSON.parse(invoices[activeOrder].imageCarouselModules));
+                 imagesArr = JSON.parse(invoices[activeOrder].imageCarouselModules);
+                 //setVideosArr((videosArr) => JSON.parse(invoices[activeOrder].videoCarouselModules));
+                 videosArr = JSON.parse(invoices[activeOrder].videoCarouselModules);
+                 //setFormsArr((formsArr) => JSON.parse(invoices[activeOrder].formsModules));
+                 formsArr = JSON.parse(invoices[activeOrder].formsModules);
+                 // setEncryptedArr((encryptedArr) => JSON.parse(invoices[activeOrder].encryptedModules));
+                 encryptedArr = JSON.parse(invoices[activeOrder].encryptedModules);
+                 // setCrudArr((crudArr) => JSON.parse(invoices[activeOrder].crudModules));
+                 crudArr = JSON.parse(invoices[activeOrder].crudModules);
  
-                 const list = [JSON.parse(res.data[0].eventModules), JSON.parse(res.data[0].imageCarouselModules), JSON.parse(res.data[0].videoCarouselModules), JSON.parse(res.data[0].formsModules), JSON.parse(res.data[0].encryptedModules), JSON.parse(res.data[0].crudModules)];
+                 const list = [JSON.parse(invoices[activeOrder].eventModules), JSON.parse(invoices[activeOrder].imageCarouselModules), JSON.parse(invoices[activeOrder].videoCarouselModules), JSON.parse(invoices[activeOrder].formsModules), JSON.parse(invoices[activeOrder].encryptedModules), JSON.parse(invoices[activeOrder].crudModules)];
                  const names = ["events", "images", "videos", "forms", "encrypted", "crud"];
                  setTimeout(() => {
                      for (let i = 0; i < names.length; i++) {
@@ -493,6 +555,134 @@ const formSelection = () => {
          }
      );*/
 
+
+
+    timestampEmail = invoices[activeOrder].timestampEmail;
+    document.querySelector("[name='fname']").value = invoices[activeOrder].fname;
+    document.querySelector("[name='lname']").value = invoices[activeOrder].lname;
+    document.querySelector("[name='email']").value = invoices[activeOrder].email;
+    document.querySelector("[name='phone']").value = invoices[activeOrder].phone;
+    document.querySelector("[name='domain']").value = invoices[activeOrder].domain;
+    document.querySelector("[name='price']").value = invoices[activeOrder].price;
+    document.querySelector("[name='supportRate']").value = invoices[activeOrder].supportRate;
+    document.querySelector("[name='developementRate']").value = invoices[activeOrder].developementRate;
+
+    if (invoices[activeOrder].clientSupport.indexOf("Yes") !== -1) {
+        document.querySelector("[name='clientSupport']").checked = true;
+    }
+
+    if (invoices[activeOrder].hosting.indexOf("Yes") !== -1) {
+        document.querySelector("[name='hosting']").checked = true;
+    }
+
+    if (invoices[activeOrder].securityCert.indexOf("Yes") !== -1) {
+        document.querySelector("[name='securityCert']").checked = true;
+    }
+
+    document.querySelector("[name='howManyPgs']").value = invoices[activeOrder].howManyPgs;
+
+    if (invoices[activeOrder].contactForm.indexOf("Yes") !== -1) {
+        document.querySelector("[name='contactForm']").checked = true;
+    }
+    if (invoices[activeOrder].weatherAPI.indexOf("Yes") !== -1) {
+        document.querySelector("[name='weatherAPI']").checked = true;
+    }
+    if (invoices[activeOrder].banners.indexOf("Yes") !== -1) {
+        document.querySelector("[name='banners']").checked = true;
+    }
+    if (invoices[activeOrder].analytics.indexOf("Yes") !== -1) {
+        document.querySelector("[name='analytics']").checked = true;
+    }
+    if (invoices[activeOrder].content.indexOf("Yes") !== -1) {
+        document.querySelector("[name='content']").checked = true;
+    }
+    document.querySelector("[name='blog']").value = invoices[activeOrder].blog;
+
+    if (invoices[activeOrder].jwtLogin.indexOf("Yes") !== -1) {
+        document.querySelector("[name='jwtLogin']").checked = true;
+    }
+
+    if (invoices[activeOrder].dbBackup.indexOf("Yes") !== -1) {
+        document.querySelector("[name='dbBackup']").checked = true;
+    }
+
+    if (invoices[activeOrder].dbSupport.indexOf("Yes") !== -1) {
+        document.querySelector("[name='dbSupport']").checked = true;
+    }
+
+    if (invoices[activeOrder].merchantAccount.indexOf("Yes") !== -1) {
+        document.querySelector("[name='merchantAccount']").checked = true;
+    }
+
+    document.querySelector("[name='databaseType']").value = invoices[activeOrder].databaseType;
+    document.querySelector("[name='details']").value = invoices[activeOrder].details;
+
+
+    //setEventArr((eventArr) => JSON.parse(invoices[activeOrder].eventModules));
+    eventArr = JSON.parse(invoices[activeOrder].eventModules);
+    let eventsInputHTML = "";
+    for (let i = 0; i < eventArr.length; i++) {
+        eventsInputHTML = eventsInputHTML + "<input type='text' class='form-control' name='events-" + i + "' />";
+
+    }
+    document.querySelector("[data-target='events']").innerHTML = eventsInputHTML;
+    //setImagesArr((imagesArr) => JSON.parse(invoices[activeOrder].imageCarouselModules));
+    imagesArr = JSON.parse(invoices[activeOrder].imageCarouselModules);
+    let imagesInputHTML = "";
+    for (let i = 0; i < imagesArr.length; i++) {
+        imagesInputHTML = imagesInputHTML + "<input type='text' class='form-control' name='images-" + i + "' />";
+
+    }
+    document.querySelector("[data-target='images']").innerHTML = imagesInputHTML;
+    //setVideosArr((videosArr) => JSON.parse(invoices[activeOrder].videoCarouselModules));
+    videosArr = JSON.parse(invoices[activeOrder].videoCarouselModules);
+    let videosInputHTML = "";
+    for (let i = 0; i < videosArr.length; i++) {
+        videosInputHTML = videosInputHTML + "<input type='text' class='form-control' name='videos-" + i + "' />";
+
+    }
+    document.querySelector("[data-target='videos']").innerHTML = videosInputHTML;
+    //setFormsArr((formsArr) => JSON.parse(invoices[activeOrder].formsModules));
+    formsArr = JSON.parse(invoices[activeOrder].formsModules);
+    let formsInputHTML = "";
+    for (let i = 0; i < formsArr.length; i++) {
+        formsInputHTML = formsInputHTML + "<input type='text' class='form-control' name='forms-" + i + "' />";
+
+    }
+    document.querySelector("[data-target='forms']").innerHTML = formsInputHTML;
+    // setEncryptedArr((encryptedArr) => JSON.parse(invoices[activeOrder].encryptedModules));
+    encryptedArr = JSON.parse(invoices[activeOrder].encryptedModules);
+    let encryptedInputHTML = "";
+    for (let i = 0; i < encryptedArr.length; i++) {
+        encryptedInputHTML = encryptedInputHTML + "<input type='text' class='form-control' name='encrypted-" + i + "' />";
+
+    }
+    document.querySelector("[data-target='encrypted']").innerHTML = encryptedInputHTML;
+    // setCrudArr((crudArr) => JSON.parse(invoices[activeOrder].crudModules));
+    crudArr = JSON.parse(invoices[activeOrder].crudModules);
+
+    let crudInputHTML = "";
+    for (let i = 0; i < crudArr.length; i++) {
+        crudInputHTML = crudInputHTML + "<input type='text' class='form-control' name='crud-" + i + "' />";
+
+    }
+    document.querySelector("[data-target='crud']").innerHTML = crudInputHTML;
+
+
+
+    const list = [JSON.parse(invoices[activeOrder].eventModules), JSON.parse(invoices[activeOrder].imageCarouselModules), JSON.parse(invoices[activeOrder].videoCarouselModules), JSON.parse(invoices[activeOrder].formsModules), JSON.parse(invoices[activeOrder].encryptedModules), JSON.parse(invoices[activeOrder].crudModules)];
+    const names = ["events", "images", "videos", "forms", "encrypted", "crud"];
+    setTimeout(() => {
+        for (let i = 0; i < names.length; i++) {
+            for (let j = 0; j < list[i].length; j++) {
+                if (document.querySelector("[name='" + names[i] + "-" + j + "']")) {
+                    document.querySelector("[name='" + names[i] + "-" + j + "']").value = list[i][j];
+                }
+            }
+        }
+        exportToHTML("view");
+    }, 500);
+
     exportToHTML("view");
 
 }
@@ -504,4 +694,13 @@ const formSelection = () => {
         loadIds();
 
     }, [])
+
+
+
+
+[{"timestampEmail":"2024-12-11_PM-03:15:53:try@this.org","fname":"Aaron","lname":"Smith","email":"try@this.org","phone":"555.555.5555","supportRate":"500","developementRate":"75","domain":"try-this.org","clientSupport":"Yes Client Site Support","hosting":"Yes Hosting","securityCert":"Yes SSL Certificate","howManyPgs":"5","contactForm":"Yes contact form","weatherAPI":"Yes weather API","banners":"Yes banners","analytics":"Yes Google Analytics","content":"Yes content modules","blog":"try-this.rss.blog.org","eventModules":"[\"summerEvents\",\"winterEvents\"]","imageCarouselModules":"[\"historyImages\",\"recruitmentImages\"]","videoCarouselModules":"[\"historyVideos\",\"prostectiveVideos\"]","formsModules":"[\"execForm\",\"registrationForm\"]","jwtLogin":"Yes JWT login","dbBackup":"Yes bi-weekly DB Backup","dbSupport":"Yes Admin and Database Support","merchantAccount":"Yes merchant account","databaseType":"MySQL","encryptedModules":"[\"ccNum\",\"ccDate\",\"ccSec\"]","crudModules":"[\"guestsAPI\",\"employeeAPI\",\"transactionsAPI\",\"archiveAPI\",\"accountingAPI\",\"transportationAPI\"]","details":"JS Apex chart required for employee hours","price":"5000.00"}]
+
+
+
+
     */

@@ -14,9 +14,8 @@
   <link href="css/style.css" rel="stylesheet" />
 
   <title>Invoice Builder</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    crossorigin="anonymous" />
-  <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+
+
 </head>
 
 <body>
@@ -72,6 +71,7 @@
               return (<option value={num} >{num}</option>)
               }) : null}-->
               </select>
+              <div data-target="pages"></div>
             </li>
 
             <li><label>Contact form <input type="checkbox" name="contactForm" /></label></li>
@@ -89,7 +89,7 @@
               return (<option value={num} >{num}</option>)
               }) : null}-->
               </select>
-              <div>
+              <div data-target="events">
                 <!--{eventArr.length > 0 ? eventArr.map((num, i) => {
               if (num.length !== 0) {
               return (<input  class="form-control" name={"events-" + i} placeholder={num} />)
@@ -104,7 +104,7 @@
               return (<option value={num} >{num}</option>)
               }) : null}-->
               </select>
-              <div>
+              <div data-target="images">
                 <!--{imagesArr.length > 0 ? imagesArr.map((num, i) => {
               return (<input  class="form-control" name={"images-" + i} placeholder={num} />)
               }) : null}-->
@@ -117,7 +117,7 @@
               return (<option value={num} >{num}</option>)
               }) : null}-->
               </select>
-              <div>
+              <div data-target="videos">
                 <!--  {videosArr.length > 0 ? videosArr.map((num, i) => {
               return (<input  class="form-control" name={"videos-" + i} placeholder={num} />)
               }) : null}-->
@@ -130,7 +130,7 @@
               return (<option value={num} >{num}</option>)
               }) : null}-->
               </select>
-              <div>
+              <div data-target="forms">
                 <!-- {formsArr.length > 0 ? formsArr.map((num, i) => {
               return (<input  class="form-control" name={"forms-" + i} placeholder={num} />)
               }) : null}-->
@@ -165,7 +165,7 @@
               return (<option value={num} >{num}</option>)
               }) : null}-->
               </select>
-              <div>
+              <div data-target="encrypted">
                 <!--{encryptedArr.length > 0 ? encryptedArr.map((num, i) => {
               return (<input  class="form-control" name={"encrypted-" + i} placeholder={num} />)
               }) : null}-->
@@ -178,7 +178,7 @@
               return (<option value={num} >{num}</option>)
               }) : null}-->
               </select>
-              <div>
+              <div data-target="crud">
                 <!-- {crudArr.length > 0 ? crudArr.map((num, i) => {
               return (<input  class="form-control" name={"crud-" + i} placeholder={num} />)
               }) : null}-->
@@ -201,7 +201,7 @@
     </div>
     <div class="row mb-5">
       <div class="col-md-12 mb-1" id="HTML_Target"></div>
-      <div class="col-md-12 mb-5 printOnly">
+      <div class="col-md-12 mb-5 hide" id="legalText">
 
         <h5>STATEMENT OF WORK</h5>
         <p>We've prepared the price quote (refer to page 1) based on everything that we have discussed, including any

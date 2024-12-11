@@ -244,6 +244,11 @@ div.inline {
     background: white;
 }
 
+.btn-group.block,
+.btn-block {
+    width: 100%;
+    padding: 2px;
+}
 
 /*end  custom radio*/
 
