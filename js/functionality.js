@@ -104,7 +104,7 @@ if (localStorage.getItem("invoices")) {
 const exportToHTML = (method) => {
 
 
-    document.getElementById("legalText").classList.remove("hide");
+
 
     Validate(["fname", "lname", "email", "phone", "domain", "price", "supportRate", "developementRate"]);
 
@@ -114,7 +114,7 @@ const exportToHTML = (method) => {
         return false;
 
     }
-
+    document.getElementById("legalText").classList.remove("hide");
     let fname = document.querySelector("[name='fname']").value;
     let lname = document.querySelector("[name='lname']").value;
     let email = document.querySelector("[name='email']").value;
