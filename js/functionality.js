@@ -25,6 +25,7 @@ import Validate from "./Validate";*/
  let [activeOrder, setActiveOrder] = useState("default");*/
 let invoices = []
 
+
 let eventsNum = [];
 let eventArr = [];
 let imagesNum = [];
@@ -79,6 +80,9 @@ if (localStorage.getItem("invoices")) {
     document.querySelector("[name='whichOrder']").innerHTML = invoiceOptionsHTML;
 }
 
+
+
+
 //CLIENT SIDE GET ALL WITHIN A DECADE
 /*const loadIds = () => {
     axios.get("/api/workOrder/allOrderIds/202", props.config).then(
@@ -106,7 +110,7 @@ const exportToHTML = (method) => {
 
 
 
-    Validate(["fname", "lname", "email", "phone", "domain", "price", "supportRate", "developementRate"]);
+    Validate(["fname", "lname", "email", "phone", "domain", "price", "supportRate", "developementRate", "companyName"]);
 
     if (document.querySelector(".error")) {
         globalAlert("alert-warning", "There is an isssue with your form");
@@ -115,6 +119,12 @@ const exportToHTML = (method) => {
 
     }
     document.getElementById("legalText").classList.remove("hide");
+    setTimeout(() => {
+        [].forEach.call(document.querySelectorAll(".companyName"), (e) => {
+            e.innerHTML = document.querySelector("[name='companyName']").value;
+        });
+    }, 1000);
+
     let fname = document.querySelector("[name='fname']").value;
     let lname = document.querySelector("[name='lname']").value;
     let email = document.querySelector("[name='email']").value;
@@ -265,7 +275,7 @@ const exportToHTML = (method) => {
     }
 
 
-    let htmlString = "<h2>Web-Presence LLC Work Order</h2><h5>" + timestamp(new Date()) + "</h5><div><ul><li>" + fname + " " + lname + "</li><li>" + email + "</li><li>" +
+    let htmlString = "<h2><span class='companyName'></span> Work Order</h2><h5>" + timestamp(new Date()) + "</h5><div><ul><li>" + fname + " " + lname + "</li><li>" + email + "</li><li>" +
         phone + "</li><li>Price: " + document.querySelector("[name='price']").value + "</li><li>Monthly Support Rate: " + document.querySelector("[name='supportRate']").value + "</li><li>Developer Rate: " + document.querySelector("[name='developementRate']").value + "</li><li>Domain: " +
         document.querySelector("[name='domain']").value + "</li><li>" + clientSupport + "</li><li>" + hosting + "</li><li>" + securityCert + "</li><li>How many HTML pages: " + howManyPgs + "</li><li>" + contactForm + "</li><li>" +
         weatherAPI + "</li><li>" + banners + "</li><li>" + analytics + "</li><li>" + content + "</li><li>Content Management System for admin use only</li><li>Blog address: " + blog + "</li><li>Event Modules: " + eventModules + "</li><li>Image Carousel Modules: " + imageCarouselModules + "</li><li>Video Carousel Modules: " +
@@ -686,6 +696,7 @@ const formSelection = () => {
     exportToHTML("view");
 
 }
+
 
 /*
     useEffect(() => {

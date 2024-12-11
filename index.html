@@ -23,7 +23,9 @@
     <div class="row">
       <div class="col-md-12">
         <h1>Web Developer Work Order Invoice</h1>
+
       </div>
+
     </div>
 
     <div class="row noPrint">
@@ -42,6 +44,8 @@
         <div class="form-group">
           <input type="text" name="fname" class="form-control" placeholder="First Name" />
           <input type="text" name="lname" class="form-control" placeholder="Last Name" />
+          <input type="text" class="form-control" name="companyName" onClick="populateCompany()"
+            placeholder="Company name " />
           <input type="text" name="email" class="form-control" placeholder="Email" />
           <input type="text" name="phone" class="form-control" placeholder="Phone" />
         </div>
@@ -205,7 +209,7 @@
       <div class="col-md-12 mb-1" id="HTML_Target"></div>
       <div class="col-md-12 mb-5 hide" id="legalText">
 
-        <h5>STATEMENT OF WORK</h5>
+        <h5><span class="companyName">YOUR COMPANY NAME</span> STATEMENT OF WORK</h5>
         <p>We've prepared the price quote (refer to page 1) based on everything that we have discussed, including any
           correspondence via email, in-person, or phone calls. The breakdown is outlined in the Statement of Work
           document
@@ -229,7 +233,8 @@
           received your confirmation we will proceed.</p>
 
         <h5>LIABILITY</h5>
-        <p>Web-Presence LLC will do everything possible to build you an amazing website, but we accept no liability
+        <p><span class="companyName">YOUR COMPANY NAME</span> will do everything possible to build you an amazing
+          website, but we accept no liability
           for your sales, revenue, and/or the success of your website/business directly, indirectly, or consequentially.
           This contract is a legally binding document, and cannot be renewed. If for some reason one part of this
           contract
