@@ -700,7 +700,9 @@ const formSelection = () => {
     exportToHTML("view");
 
 }
-
+function printInvoice() {
+    window.print();
+}
 
 /*
     useEffect(() => {
