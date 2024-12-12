@@ -634,6 +634,7 @@ const formSelection = () => {
 
     //setEventArr((eventArr) => JSON.parse(invoices[activeOrder].eventModules));
     eventArr = JSON.parse(invoices[activeOrder].eventModules);
+    document.querySelector("select[name='events']").selectedIndex = eventArr.length;
     let eventsInputHTML = "";
     for (let i = 0; i < eventArr.length; i++) {
         eventsInputHTML = eventsInputHTML + "<input type='text' class='form-control' name='events-" + i + "' />";
@@ -642,6 +643,7 @@ const formSelection = () => {
     document.querySelector("[data-target='events']").innerHTML = eventsInputHTML;
     //setImagesArr((imagesArr) => JSON.parse(invoices[activeOrder].imageCarouselModules));
     imagesArr = JSON.parse(invoices[activeOrder].imageCarouselModules);
+    document.querySelector("select[name='images']").selectedIndex = imagesArr.length;
     let imagesInputHTML = "";
     for (let i = 0; i < imagesArr.length; i++) {
         imagesInputHTML = imagesInputHTML + "<input type='text' class='form-control' name='images-" + i + "' />";
@@ -650,6 +652,7 @@ const formSelection = () => {
     document.querySelector("[data-target='images']").innerHTML = imagesInputHTML;
     //setVideosArr((videosArr) => JSON.parse(invoices[activeOrder].videoCarouselModules));
     videosArr = JSON.parse(invoices[activeOrder].videoCarouselModules);
+    document.querySelector("select[name='videos']").selectedIndex = videosArr.length;
     let videosInputHTML = "";
     for (let i = 0; i < videosArr.length; i++) {
         videosInputHTML = videosInputHTML + "<input type='text' class='form-control' name='videos-" + i + "' />";
@@ -658,6 +661,7 @@ const formSelection = () => {
     document.querySelector("[data-target='videos']").innerHTML = videosInputHTML;
     //setFormsArr((formsArr) => JSON.parse(invoices[activeOrder].formsModules));
     formsArr = JSON.parse(invoices[activeOrder].formsModules);
+    document.querySelector("select[name='forms']").selectedIndex = formsArr.length;
     let formsInputHTML = "";
     for (let i = 0; i < formsArr.length; i++) {
         formsInputHTML = formsInputHTML + "<input type='text' class='form-control' name='forms-" + i + "' />";
@@ -666,6 +670,7 @@ const formSelection = () => {
     document.querySelector("[data-target='forms']").innerHTML = formsInputHTML;
     // setEncryptedArr((encryptedArr) => JSON.parse(invoices[activeOrder].encryptedModules));
     encryptedArr = JSON.parse(invoices[activeOrder].encryptedModules);
+    document.querySelector("select[name='encrypted']").selectedIndex = encryptedArr.length;
     let encryptedInputHTML = "";
     for (let i = 0; i < encryptedArr.length; i++) {
         encryptedInputHTML = encryptedInputHTML + "<input type='text' class='form-control' name='encrypted-" + i + "' />";
@@ -674,7 +679,7 @@ const formSelection = () => {
     document.querySelector("[data-target='encrypted']").innerHTML = encryptedInputHTML;
     // setCrudArr((crudArr) => JSON.parse(invoices[activeOrder].crudModules));
     crudArr = JSON.parse(invoices[activeOrder].crudModules);
-
+    document.querySelector("select[name='crud']").selectedIndex = crudArr.length;
     let crudInputHTML = "";
     for (let i = 0; i < crudArr.length; i++) {
         crudInputHTML = crudInputHTML + "<input type='text' class='form-control' name='crud-" + i + "' />";
