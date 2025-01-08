@@ -1,4 +1,4 @@
-const timestamp = (dateNum) => {
+const invoiceTimestamp = (dateNum) => {
     let date = new Date(dateNum);
     let day = date.getDate();
     let month = Number(date.getMonth()) + 1;

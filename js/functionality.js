@@ -279,14 +279,14 @@ const exportToHTML = (method) => {
     }
 
 
-    let htmlString = "<h2><span class='companyName'></span> Work Order</h2><h5>" + timestamp(new Date()) + "</h5><div><ul><li>" + fname + " " + lname + "</li><li>" + email + "</li><li>" +
+    let htmlString = "<h2><span class='companyName'></span> Work Order</h2><h5>" + invoiceTimestamp(new Date()) + "</h5><div><ul><li>" + fname + " " + lname + "</li><li>" + email + "</li><li>" +
         phone + "</li><li>Price: " + document.querySelector("[name='price']").value + "</li><li>Monthly Support Rate: " + document.querySelector("[name='supportRate']").value + "</li><li>Developer Rate: " + document.querySelector("[name='developementRate']").value + "</li><li>Domain: " +
         document.querySelector("[name='domain']").value + "</li><li>" + clientSupport + "</li><li>" + hosting + "</li><li>" + securityCert + "</li><li>How many HTML pages: " + howManyPgs + "</li><li>" + contactForm + "</li><li>" +
         weatherAPI + "</li><li>" + banners + "</li><li>" + analytics + "</li><li>" + content + "</li><li>Content Management System for admin use only</li><li>Blog address: " + blog + "</li><li>Event Modules: " + eventModules + "</li><li>Image Carousel Modules: " + imageCarouselModules + "</li><li>Video Carousel Modules: " +
         videoCarouselModules + "</li><li>Form modules: " + formDetails + "</li><li>" + dbSupport + "</li><li>" + dbBackup + "</li><li>" + jwtLogin + "</li><li>" + merchantAccount + "</li><li>" + databaseType + "</li><li>Encrypted Values: " + encryptedModules + "</li><li>CRUD Modules: " + crudModules + "</li><li>Details: <p>" + details + "</p></li></ul></div>";
     let id = timeStampEmail;
     if (method === "default") {
-        id = timestamp(new Date()) + ":" + email;
+        id = invoiceTimestamp(new Date()) + ":" + email;
     }
 
     const data = {
