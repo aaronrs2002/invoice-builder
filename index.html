@@ -231,7 +231,9 @@
         </div>
 
       </div>
-      <button class="btn btn-block btn-success" onClick="exportToHTML('default')" data-func="post">Submit</button>
+      <div class="col-md-12"> <button class="btn btn-block btn-success p-1" onClick="exportToHTML('default')"
+          data-func="post">Submit</button></div>
+
 
 
 
@@ -290,26 +292,78 @@
           class="fas fa-file-pdf"></i> </button>
     </div>
     : null}-->
-    </div>
+
+      <div class="col-md-12 py-1">
+
+        <div class="d-grid gap-2">
+          <button class="btn btn-info" onClick="javascript:toggle('info')" type="button" data-toggle="default">View
+            Guide/Instructions</button>
+          <button class="btn btn-info hide" onClick="javascript:toggle('default')" type="button" data-toggle="info">Hide
+            Guide/Instructions</button>
+        </div>
+
+        <div class="card hide" data-toggle="info" id="info">
+          <div class="card-body  text-left">
+            <div class="row">
+              <div class="col-md-12">
+                <h2>Free Web Developer Invoice Generator: From React.js to Vanilla JavaScript (Open Source on GitHub)
+                </h2>
+                <hr>
+                <div>
+                  <div class="row">
+                    <div class="col-md-6"><iframe style="width: 100%; height: auto; min-height: 270px;"
+                        src="https://www.youtube.com/embed/Rih3dQzwURA" title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen=""></iframe></div>
+                    <div class="col-md-6">
+                      <p>Take a look at the code:<br> <a href="https://github.com/aaronrs2002/invoice-builder"
+                          target="_blank">https://github.com/aaronrs2002/invoice-builder</a>
+                      </p>
+
+                      <p>In this tutorial, I take my React.js invoice generator and convert it to Vanilla JavaScript,
+                        creating a free,
+                        open-source tool available on GitHub. This invoice generator lets web developers create
+                        detailed, professional
+                        invoices for real projects, complete with print and email capability. The generated invoice
+                        serves as a
+                        starting point for a development team's workflow, outlining tasks for both client-side and
+                        server-side
+                        development. Perfect for freelancers and teams alike!</p>
 
 
-  </div>
 
-  <div class="hide alert fadeInUp" role="alert" id="globalAlert"></div>
-  <footer class="footer mt-auto py-3 animated fadeInUp">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="btn-group block my-2" role="group" id="gameLinks"></div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+
+          </div>
         </div>
-        <div class="col-md-2 my-2"> <select class="form-control" onChange="changeTheme()" id="themes"></select>
-        </div>
-        <div class="col-md-4" id="socialList">
-        </div>
-        <div class="col-md-2 my-3" id="year"></div>
       </div>
+
+
     </div>
-  </footer>
+
+    <div class="hide alert fadeInUp" role="alert" id="globalAlert"></div>
+    <footer class="footer mt-auto py-3 animated fadeInUp">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="btn-group block my-2" role="group" id="gameLinks"></div>
+          </div>
+          <div class="col-md-2 my-2"> <select class="form-control" onChange="changeTheme()" id="themes"></select>
+          </div>
+          <div class="col-md-4" id="socialList">
+          </div>
+          <div class="col-md-2 my-3" id="year"></div>
+        </div>
+      </div>
+    </footer>
 
 </body>
 <script src="https://aaronrs2002.github.io/black-jack/js/footer.js"></script>
