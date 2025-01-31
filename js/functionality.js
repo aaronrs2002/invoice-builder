@@ -67,21 +67,27 @@ if (localStorage.getItem("companyName")) {
     document.querySelector("input[name='companyName']").value = localStorage.getItem("companyName");
 }
 
-if (localStorage.getItem("invoices")) {
-    let tempList = [];
-    invoices = JSON.parse(localStorage.getItem("invoices"));
+
+const loadOrders = () => {
+    if (localStorage.getItem("invoices")) {
+        document.querySelector("[name='whichOrder']").innerHTML = "";
+        let tempList = [];
+        invoices = JSON.parse(localStorage.getItem("invoices"));
 
 
-    let invoiceOptionsHTML = document.querySelector("[name='whichOrder']").innerHTML;
-    for (let i = 0; i < invoices.length; i++) {
-        if (tempList.indexOf(invoices[i].domain) === -1 && invoices[i].domain) {
-            invoiceOptionsHTML = invoiceOptionsHTML + "<option value='" + i + "'>" + invoices[i].domain + "</option>";
-            tempList.push(invoices[i].domain);
+        let invoiceOptionsHTML = document.querySelector("[name='whichOrder']").innerHTML;
+        for (let i = 0; i < invoices.length; i++) {
+            if (tempList.indexOf(invoices[i].domain) === -1 && invoices[i].domain) {
+                invoiceOptionsHTML = invoiceOptionsHTML + "<option value='" + i + "'>" + invoices[i].domain + "</option>";
+                tempList.push(invoices[i].domain);
+            }
+
         }
-
+        document.querySelector("[name='whichOrder']").innerHTML = invoiceOptionsHTML;
     }
-    document.querySelector("[name='whichOrder']").innerHTML = invoiceOptionsHTML;
 }
+loadOrders();
+
 
 
 
@@ -390,6 +396,7 @@ const exportToHTML = (method) => {
     htmlOutput = htmlString;
 
     document.getElementById("HTML_Target").innerHTML = htmlOutput;
+    loadOrders();
     return false;
 }
 
