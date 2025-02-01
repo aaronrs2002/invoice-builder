@@ -70,7 +70,7 @@ if (localStorage.getItem("companyName")) {
 
 const loadOrders = () => {
     if (localStorage.getItem("invoices")) {
-        document.querySelector("[name='whichOrder']").innerHTML = "";
+        document.querySelector("[name='whichOrder']").innerHTML = "<option value='default'>New work order</option>";
         let tempList = [];
         invoices = JSON.parse(localStorage.getItem("invoices"));
 
