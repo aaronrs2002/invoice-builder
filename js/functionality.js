@@ -84,6 +84,8 @@ const loadOrders = () => {
 
         }
         document.querySelector("[name='whichOrder']").innerHTML = invoiceOptionsHTML;
+    } else {
+        document.querySelector("[name='whichOrder']").classList.add("hide");
     }
 }
 loadOrders();
@@ -396,6 +398,7 @@ const exportToHTML = (method) => {
     htmlOutput = htmlString;
 
     document.getElementById("HTML_Target").innerHTML = htmlOutput;
+    document.querySelector("[name='whichOrder']").classList.remove("hide");
     loadOrders();
     return false;
 }
