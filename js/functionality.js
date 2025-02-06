@@ -68,7 +68,7 @@ if (localStorage.getItem("companyName")) {
 }
 
 
-const loadOrders = () => {
+const loadOrders = (selected) => {
     if (localStorage.getItem("invoices")) {
         document.querySelector("[name='whichOrder']").innerHTML = "<option value='default'>New work order</option>";
         let tempList = [];
@@ -77,18 +77,23 @@ const loadOrders = () => {
 
         let invoiceOptionsHTML = document.querySelector("[name='whichOrder']").innerHTML;
         for (let i = 0; i < invoices.length; i++) {
+            let itemSelected = "";
+            if (i == selected) {
+                itemSelected = "selected";
+            }
             if (tempList.indexOf(invoices[i].domain) === -1 && invoices[i].domain) {
-                invoiceOptionsHTML = invoiceOptionsHTML + "<option value='" + i + "'>" + invoices[i].domain + "</option>";
+                invoiceOptionsHTML = invoiceOptionsHTML + "<option value='" + i + "' " + itemSelected + ">" + invoices[i].domain + "</option>";
                 tempList.push(invoices[i].domain);
             }
 
         }
         document.querySelector("[name='whichOrder']").innerHTML = invoiceOptionsHTML;
+
     } else {
         document.querySelector("[name='whichOrder']").classList.add("hide");
     }
 }
-loadOrders();
+loadOrders("default");
 
 
 
@@ -399,7 +404,7 @@ const exportToHTML = (method) => {
 
     document.getElementById("HTML_Target").innerHTML = htmlOutput;
     document.querySelector("[name='whichOrder']").classList.remove("hide");
-    loadOrders();
+    loadOrders(document.querySelector("[name='whichOrder']").value);
     return false;
 }
 
@@ -710,9 +715,11 @@ const formSelection = () => {
             }
         }
         exportToHTML("view");
+
     }, 500);
 
     exportToHTML("view");
+
 
 }
 function printInvoice() {
