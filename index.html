@@ -50,303 +50,319 @@
     </div>
   </nav>
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h1>Web Developer Work Order Invoice</h1>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Web Developer Work Order Invoice</h1>
 
-      </div>
+          </div>
 
-    </div>
+        </div>
 
-    <div class="row noPrint">
-      <div class="col-md-12">
-        <select class="form-control" onChange="formSelection()" name="whichOrder">
+        <div class="row noPrint">
+          <div class="col-md-12">
+            <select class="form-control" onChange="formSelection()" name="whichOrder">
 
 
-          <!--{allOrders.length > 0 ? allOrders.map((id, i) => {
+              <!--{allOrders.length > 0 ? allOrders.map((id, i) => {
         return (<option  value={id.timestampEmail}>{id.timestampEmail}</option>)
         })
         : null}-->
-        </select>
-      </div>
+            </select>
+          </div>
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <input type="text" class="form-control" name="companyName" placeholder="Web Developer Company (You)" />
-          <input type="text" name="fname" class="form-control" placeholder="Customer First Name" />
-          <input type="text" name="lname" class="form-control" placeholder="Customer Last Name" />
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control" name="companyName" placeholder="Web Developer Company (You)" />
+              <input type="text" name="fname" class="form-control" placeholder="Customer First Name" />
+              <input type="text" name="lname" class="form-control" placeholder="Customer Last Name" />
 
-          <input type="text" name="email" class="form-control" placeholder="Customer Email" />
-          <input type="text" name="phone" class="form-control" placeholder="Customer Phone" />
+              <input type="text" name="email" class="form-control" placeholder="Customer Email" />
+              <input type="text" name="phone" class="form-control" placeholder="Customer Phone" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group"><input type="text" name="domain" class="form-control"
+                placeholder="Customer Domain Name" />
+              <input type="text" name="price" class="form-control" placeholder="Price" />
+              <input type="text" name="supportRate" class="form-control" placeholder="Monthly Support Rate" />
+              <input type="text" name="developementRate" class="form-control" placeholder="Development Rate" />
+
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group"><input type="text" name="domain" class="form-control"
-            placeholder="Customer Domain Name" />
-          <input type="text" name="price" class="form-control" placeholder="Price" />
-          <input type="text" name="supportRate" class="form-control" placeholder="Monthly Support Rate" />
-          <input type="text" name="developementRate" class="form-control" placeholder="Development Rate" />
 
-        </div>
-      </div>
-    </div>
+        <div class="row mb-1 noPrint">
+          <div class="col-md-6 mb-5">
 
-    <div class="row mb-1 noPrint">
-      <div class="col-md-6 mb-5">
+            <div class="form-group">
+              <h5>Public/Client Side Website</h5>
+              <ul class="decimal">
 
-        <div class="form-group">
-          <h5>Public/Client Side Website</h5>
-          <ul class="decimal">
+                <li><label>Client side monitoring and support <input type="checkbox" name="clientSupport" /></label>
+                </li>
+                <li><label>Monthly hosting <input type="checkbox" name="hosting" /></label></li>
+                <li><label>SSL Certificate <input type="checkbox" name="securityCert" /></label></li>
 
-            <li><label>Client side monitoring and support <input type="checkbox" name="clientSupport" /></label></li>
-            <li><label>Monthly hosting <input type="checkbox" name="hosting" /></label></li>
-            <li><label>SSL Certificate <input type="checkbox" name="securityCert" /></label></li>
-
-            <li>
-              <label>Number of pages:</label>
-              <select class="form-control" numbers-total="25" name="howManyPgs">
-                <!--{numbers.length > 0 ? numbers.map((num, i) => {
+                <li>
+                  <label>Number of pages:</label>
+                  <select class="form-control" numbers-total="25" name="howManyPgs">
+                    <!--{numbers.length > 0 ? numbers.map((num, i) => {
               return (<option value={num} >{num}</option>)
               }) : null}-->
-              </select>
-              <div data-target="pages"></div>
-            </li>
+                  </select>
+                  <div data-target="pages"></div>
+                </li>
 
-            <li><label>Contact form <input type="checkbox" name="contactForm" /></label></li>
-            <li><label>Weather API <input type="checkbox" name="weatherAPI" /></label></li>
-            <li><label>Banners <input type="checkbox" name="banners" /></label></li>
-            <li><label>Google Analytics <input type="checkbox" name="analytics" /></label></li>
+                <li><label>Contact form <input type="checkbox" name="contactForm" /></label></li>
+                <li><label>Weather API <input type="checkbox" name="weatherAPI" /></label></li>
+                <li><label>Banners <input type="checkbox" name="banners" /></label></li>
+                <li><label>Google Analytics <input type="checkbox" name="analytics" /></label></li>
 
-            <li><label>Content modules (text,video,map,calendar,image) <input type="checkbox" name="content" /></label>
-            </li>
-            <li><input type="text" name="blog" class="form-control" placeholder="Blog Address" /></li>
-            <li>
-              <label>Number of event modules:</label>
-              <select class="form-control" name="events" numbers-total="25" onChange="buildFields('events')">
-                <!--{numbers.length > 0 ? numbers.map((num, i) => {
+                <li><label>Content modules (text,video,map,calendar,image) <input type="checkbox"
+                      name="content" /></label>
+                </li>
+                <li><input type="text" name="blog" class="form-control" placeholder="Blog Address" /></li>
+                <li>
+                  <label>Number of event modules:</label>
+                  <select class="form-control" name="events" numbers-total="25" onChange="buildFields('events')">
+                    <!--{numbers.length > 0 ? numbers.map((num, i) => {
               return (<option value={num} >{num}</option>)
               }) : null}-->
-              </select>
-              <div data-target="events">
-                <!--{eventArr.length > 0 ? eventArr.map((num, i) => {
+                  </select>
+                  <div data-target="events">
+                    <!--{eventArr.length > 0 ? eventArr.map((num, i) => {
               if (num.length !== 0) {
               return (<input  class="form-control" name={"events-" + i} placeholder={num} />)
               }
               }) : null}-->
-              </div>
-            </li>
-            <li>
-              <label>Number of image carousel modules:</label>
-              <select class="form-control" name="images" numbers-total="25" onChange="buildFields('images')">
-                <!-- {numbers.length > 0 ? numbers.map((num, i) => {
+                  </div>
+                </li>
+                <li>
+                  <label>Number of image carousel modules:</label>
+                  <select class="form-control" name="images" numbers-total="25" onChange="buildFields('images')">
+                    <!-- {numbers.length > 0 ? numbers.map((num, i) => {
               return (<option value={num} >{num}</option>)
               }) : null}-->
-              </select>
-              <div data-target="images">
-                <!--{imagesArr.length > 0 ? imagesArr.map((num, i) => {
+                  </select>
+                  <div data-target="images">
+                    <!--{imagesArr.length > 0 ? imagesArr.map((num, i) => {
               return (<input  class="form-control" name={"images-" + i} placeholder={num} />)
               }) : null}-->
-              </div>
-            </li>
-            <li>
-              <label>Number of video carousel modules:</label>
-              <select class="form-control" name="videos" numbers-total="25" onChange="buildFields('videos')">
-                <!--{numbers.length > 0 ? numbers.map((num, i) => {
+                  </div>
+                </li>
+                <li>
+                  <label>Number of video carousel modules:</label>
+                  <select class="form-control" name="videos" numbers-total="25" onChange="buildFields('videos')">
+                    <!--{numbers.length > 0 ? numbers.map((num, i) => {
               return (<option value={num} >{num}</option>)
               }) : null}-->
-              </select>
-              <div data-target="videos">
-                <!--  {videosArr.length > 0 ? videosArr.map((num, i) => {
+                  </select>
+                  <div data-target="videos">
+                    <!--  {videosArr.length > 0 ? videosArr.map((num, i) => {
               return (<input  class="form-control" name={"videos-" + i} placeholder={num} />)
               }) : null}-->
-              </div>
-            </li>
-            <li>
-              <label>Number of unique forms:</label>
-              <select class="form-control" name="forms" numbers-total="25" onChange="buildFields('forms')">
-                <!--{numbers.length > 0 ? numbers.map((num, i) => {
+                  </div>
+                </li>
+                <li>
+                  <label>Number of unique forms:</label>
+                  <select class="form-control" name="forms" numbers-total="25" onChange="buildFields('forms')">
+                    <!--{numbers.length > 0 ? numbers.map((num, i) => {
               return (<option value={num} >{num}</option>)
               }) : null}-->
-              </select>
-              <div data-target="forms">
-                <!-- {formsArr.length > 0 ? formsArr.map((num, i) => {
+                  </select>
+                  <div data-target="forms">
+                    <!-- {formsArr.length > 0 ? formsArr.map((num, i) => {
               return (<input  class="form-control" name={"forms-" + i} placeholder={num} />)
               }) : null}-->
-              </div>
-            </li>
-          </ul>
+                  </div>
+                </li>
+              </ul>
 
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <h5>Admin and Server Side</h5>
-          <ul class="decimal">
-            <li><label>Server side and Admin monitoring and support <input type="checkbox" name="dbSupport" /></label>
-            </li>
-            <li><label>Secure multi-user Login <input type="checkbox" name="jwtLogin" /></label></li>
-            <li><label>Database bi-weekly back up <input type="checkbox" name="dbBackup" /></label></li>
-            <li><label>Merchant Account API <input type="checkbox" name="merchantAccount" /></label></li>
-            <li>
-              <label>Database type:</label>
-              <select class="form-control" name="databaseType">
-                <option value="MySQL">MySQL</option>
-                <option value="MongoDB">MongoDB</option>
-                <option value="GoogleFirebase">Google Firebase</option>
-                <option value="noDB">No Database</option>
-              </select>
-            </li>
-            <li>
-              <label>Number of encrypted values:</label>
-              <select class="form-control" name="encrypted" numbers-total="25" onChange="buildFields('encrypted')">
-                <!--{numbers.length > 0 ? numbers.map((num, i) => {
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <h5>Admin and Server Side</h5>
+              <ul class="decimal">
+                <li><label>Server side and Admin monitoring and support <input type="checkbox"
+                      name="dbSupport" /></label>
+                </li>
+                <li><label>Secure multi-user Login <input type="checkbox" name="jwtLogin" /></label></li>
+                <li><label>Database bi-weekly back up <input type="checkbox" name="dbBackup" /></label></li>
+                <li><label>Merchant Account API <input type="checkbox" name="merchantAccount" /></label></li>
+                <li>
+                  <label>Database type:</label>
+                  <select class="form-control" name="databaseType">
+                    <option value="MySQL">MySQL</option>
+                    <option value="MongoDB">MongoDB</option>
+                    <option value="GoogleFirebase">Google Firebase</option>
+                    <option value="noDB">No Database</option>
+                  </select>
+                </li>
+                <li>
+                  <label>Number of encrypted values:</label>
+                  <select class="form-control" name="encrypted" numbers-total="25" onChange="buildFields('encrypted')">
+                    <!--{numbers.length > 0 ? numbers.map((num, i) => {
               return (<option value={num} >{num}</option>)
               }) : null}-->
-              </select>
-              <div data-target="encrypted">
-                <!--{encryptedArr.length > 0 ? encryptedArr.map((num, i) => {
+                  </select>
+                  <div data-target="encrypted">
+                    <!--{encryptedArr.length > 0 ? encryptedArr.map((num, i) => {
               return (<input  class="form-control" name={"encrypted-" + i} placeholder={num} />)
               }) : null}-->
-              </div>
-            </li>
-            <li>
-              <label>Number of CRUD (Create, Read, Update, Delete) API's:</label>
-              <select class="form-control" name="crud" numbers-total="25" onChange="buildFields('crud')">
-                <!-- {numbers.length > 0 ? numbers.map((num, i) => {
+                  </div>
+                </li>
+                <li>
+                  <label>Number of CRUD (Create, Read, Update, Delete) API's:</label>
+                  <select class="form-control" name="crud" numbers-total="25" onChange="buildFields('crud')">
+                    <!-- {numbers.length > 0 ? numbers.map((num, i) => {
               return (<option value={num} >{num}</option>)
               }) : null}-->
-              </select>
-              <div data-target="crud">
-                <!-- {crudArr.length > 0 ? crudArr.map((num, i) => {
+                  </select>
+                  <div data-target="crud">
+                    <!-- {crudArr.length > 0 ? crudArr.map((num, i) => {
               return (<input  class="form-control" name={"crud-" + i} placeholder={num} />)
               }) : null}-->
-              </div>
-            </li>
-            <li><label>Details</label><textarea name="details" rows="5" class="form-control"
-                placeholder="Details"></textarea>
-            </li>
-          </ul>
+                  </div>
+                </li>
+                <li><label>Details</label><textarea name="details" rows="5" class="form-control"
+                    placeholder="Details"></textarea>
+                </li>
+              </ul>
+
+
+            </div>
+
+          </div>
+          <div class="col-md-12"> <button class="btn btn-block btn-success p-1" onClick="exportToHTML('default')"
+              data-func="post">Submit</button></div>
+
+
 
 
         </div>
+        <div class="row mb-5">
+          <div class="col-md-12 mb-1" id="HTML_Target"></div>
+          <div class="col-md-12 mb-5 hide" id="legalText">
 
-      </div>
-      <div class="col-md-12"> <button class="btn btn-block btn-success p-1" onClick="exportToHTML('default')"
-          data-func="post">Submit</button></div>
+            <h5><span class="companyName">YOUR COMPANY NAME</span> STATEMENT OF WORK</h5>
+            <p>We've prepared the price quote (refer to page 1) based on everything that we have discussed, including
+              any
+              correspondence via email, in-person, or phone calls. The breakdown is outlined in the Statement of Work
+              document
+              which includes the scope of work, project objectives, tasks, deliverables, certain terms, conditions and
+              requirements as well as payment of the project. We are only responsible for the items outlined in the
+              Statement
+              of Work. Items not included in the Statement of Work are not part of the project nor have they been
+              included
+              in
+              the quoted cost.</p>
+            <h5>ADDITIONS</h5>
+            <p>Please review the Statement of Work and if you have any additional feature requests, changes in tasks,
+              changes
+              in deliverables or any scope modifications, beyond what was agreed and signed off on in the original
+              Statement
+              of Work, additional billable time will be incurred to you as the client at our hourly rate of $75.</p>
+            <h5>REVISIONS</h5>
+            <p>The price estimate includes time for revisions, and that will not exceed 10% of the total budget of web
+              development time mentioned on page 2. Should you request additional revisions beyond what is included, or
+              that
+              exceed the allocated time, you will receive an email notification from us requesting a confirmation that
+              you
+              wish to proceed with said revisions and agree that you will be billed at our hourly rate of $120. After we
+              have
+              received your confirmation we will proceed.</p>
 
+            <h5>LIABILITY</h5>
+            <p><span class="companyName">YOUR COMPANY NAME</span> will do everything possible to build you an amazing
+              website, but we accept no liability
+              for your sales, revenue, and/or the success of your website/business directly, indirectly, or
+              consequentially.
+              This contract is a legally binding document, and cannot be renewed. If for some reason one part of this
+              contract
+              becomes invalid or unenforceable, the remaining parts of it remain in place.</p>
+            <ul class="list-unstyled">
+              <li>
+                <h5>SIGNATURE ______________________________________ </h5>
+              </li>
+              <li>
+                <h5>COMPANY________________________________________ </h5>
+              </li>
+              <li>
+                <h5>DATE _____________________________________________</h5>
+              </li>
+            </ul>
+            <button class="btn btn-info btn-block noPrint" onClick="printInvoice()">Print</button>
+          </div>
 
-
-
-    </div>
-    <div class="row mb-5">
-      <div class="col-md-12 mb-1" id="HTML_Target"></div>
-      <div class="col-md-12 mb-5 hide" id="legalText">
-
-        <h5><span class="companyName">YOUR COMPANY NAME</span> STATEMENT OF WORK</h5>
-        <p>We've prepared the price quote (refer to page 1) based on everything that we have discussed, including any
-          correspondence via email, in-person, or phone calls. The breakdown is outlined in the Statement of Work
-          document
-          which includes the scope of work, project objectives, tasks, deliverables, certain terms, conditions and
-          requirements as well as payment of the project. We are only responsible for the items outlined in the
-          Statement
-          of Work. Items not included in the Statement of Work are not part of the project nor have they been included
-          in
-          the quoted cost.</p>
-        <h5>ADDITIONS</h5>
-        <p>Please review the Statement of Work and if you have any additional feature requests, changes in tasks,
-          changes
-          in deliverables or any scope modifications, beyond what was agreed and signed off on in the original Statement
-          of Work, additional billable time will be incurred to you as the client at our hourly rate of $75.</p>
-        <h5>REVISIONS</h5>
-        <p>The price estimate includes time for revisions, and that will not exceed 10% of the total budget of web
-          development time mentioned on page 2. Should you request additional revisions beyond what is included, or that
-          exceed the allocated time, you will receive an email notification from us requesting a confirmation that you
-          wish to proceed with said revisions and agree that you will be billed at our hourly rate of $120. After we
-          have
-          received your confirmation we will proceed.</p>
-
-        <h5>LIABILITY</h5>
-        <p><span class="companyName">YOUR COMPANY NAME</span> will do everything possible to build you an amazing
-          website, but we accept no liability
-          for your sales, revenue, and/or the success of your website/business directly, indirectly, or consequentially.
-          This contract is a legally binding document, and cannot be renewed. If for some reason one part of this
-          contract
-          becomes invalid or unenforceable, the remaining parts of it remain in place.</p>
-        <ul class="list-unstyled">
-          <li>
-            <h5>SIGNATURE ______________________________________ </h5>
-          </li>
-          <li>
-            <h5>COMPANY________________________________________ </h5>
-          </li>
-          <li>
-            <h5>DATE _____________________________________________</h5>
-          </li>
-        </ul>
-        <button class="btn btn-info btn-block noPrint" onClick="printInvoice()">Print</button>
-      </div>
-
-      <!--  {htmlOutput.length > 0 ?
+          <!--  {htmlOutput.length > 0 ?
     <div class="col-md-12 noPrint">
       <button class="btn btn-block btn-info" onClick="indow.print()">View, Save or Print Legal Agreement <i
           class="fas fa-file-pdf"></i> </button>
     </div>
     : null}-->
 
-      <div class="col-md-12 py-1 noPrint">
+          <div class="col-md-12 py-1 noPrint">
 
-        <div class="d-grid gap-2">
-          <button class="btn btn-info" onClick="javascript:toggle('info')" type="button" data-toggle="default">View
-            Guide/Instructions</button>
-          <button class="btn btn-info hide" onClick="javascript:toggle('default')" type="button" data-toggle="info">Hide
-            Guide/Instructions</button>
-        </div>
+            <div class="d-grid gap-2">
+              <button class="btn btn-info" onClick="javascript:toggle('info')" type="button" data-toggle="default">View
+                Guide/Instructions</button>
+              <button class="btn btn-info hide" onClick="javascript:toggle('default')" type="button"
+                data-toggle="info">Hide
+                Guide/Instructions</button>
+            </div>
 
-        <div class="card hide" data-toggle="info" id="info">
-          <div class="card-body  text-left">
-            <div class="row">
-              <div class="col-md-12">
-                <h2>Free Web Developer Invoice Generator: From React.js to Vanilla JavaScript (Open Source on GitHub)
-                </h2>
-                <hr>
-                <div>
-                  <div class="row">
-                    <div class="col-md-6"><iframe style="width: 100%; height: auto; min-height: 270px;"
-                        src="https://www.youtube.com/embed/Rih3dQzwURA" title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen=""></iframe></div>
-                    <div class="col-md-6">
-                      <p>Take a look at the code:<br> <a href="https://github.com/aaronrs2002/invoice-builder"
-                          target="_blank">https://github.com/aaronrs2002/invoice-builder</a>
-                      </p>
+            <div class="card hide" data-toggle="info" id="info">
+              <div class="card-body  text-left">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2>Free Web Developer Invoice Generator: From React.js to Vanilla JavaScript (Open Source on
+                      GitHub)
+                    </h2>
+                    <hr>
+                    <div>
+                      <div class="row">
+                        <div class="col-md-6"><iframe style="width: 100%; height: auto; min-height: 270px;"
+                            src="https://www.youtube.com/embed/Rih3dQzwURA" title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen=""></iframe></div>
+                        <div class="col-md-6">
+                          <p>Take a look at the code:<br> <a href="https://github.com/aaronrs2002/invoice-builder"
+                              target="_blank">https://github.com/aaronrs2002/invoice-builder</a>
+                          </p>
 
-                      <p>In this tutorial, I take my React.js invoice generator and convert it to Vanilla JavaScript,
-                        creating a free,
-                        open-source tool available on GitHub. This invoice generator lets web developers create
-                        detailed, professional
-                        invoices for real projects, complete with print and email capability. The generated invoice
-                        serves as a
-                        starting point for a development team's workflow, outlining tasks for both client-side and
-                        server-side
-                        development. Perfect for freelancers and teams alike!</p>
+                          <p>In this tutorial, I take my React.js invoice generator and convert it to Vanilla
+                            JavaScript,
+                            creating a free,
+                            open-source tool available on GitHub. This invoice generator lets web developers create
+                            detailed, professional
+                            invoices for real projects, complete with print and email capability. The generated invoice
+                            serves as a
+                            starting point for a development team's workflow, outlining tasks for both client-side and
+                            server-side
+                            development. Perfect for freelancers and teams alike!</p>
 
 
 
 
+                        </div>
+                      </div>
                     </div>
+
                   </div>
                 </div>
 
+
+
               </div>
             </div>
-
-
-
           </div>
+
+
         </div>
       </div>
-
-
     </div>
   </div>
   <div class="hide alert fadeInUp" role="alert" id="globalAlert"></div>
